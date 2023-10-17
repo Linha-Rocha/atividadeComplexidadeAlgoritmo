@@ -1,0 +1,121 @@
+{
+    "id": 1,
+    "nome": "McDonalds",
+    "localizacao": [-38.9450632, -12.2560224],
+    "endereco": "Av. Getúlio Vargas, 1795 - Capuchinhos, Feira de Santana - BA, 44076-015",
+    "entregas": [
+        {
+            "id": 1,
+            "destinatario": "Lucas Silva",
+            "endereco": "Travessa Serrolândia, 30, Caseb, Feira de Santana - BA, 44052-168",
+            "localizacao": [
+                -38.9349956,
+                -12.2384015
+            ],
+            "produtos": [
+                {
+                    "id": 12,
+                    "nome": "Pizza Hut Brotinho",
+                    "quantidade": 1, 
+                    "preco_unitario": 16.90, 
+                    "subtotal": 16.90,
+                    "desconto": 0.00, 
+                    "total": 16.90
+                }
+            ],
+            "total_entrega": 16.90,
+            "total_desconto": 0.00,
+            "codigo_entrega": 3542,
+            "pago": false, 
+            "tipo_pagamento": [
+                {
+                    "id": 5, 
+                    "nome": "Cartão de Crédito VISA Á vista",
+                    "bandeira": "VISA"
+                }
+            ]
+        }, 
+        {
+            "id": 2,
+            "destinatario": "Marcela Almeida",
+            "endereco": "R. Araraquara, 10 - Caseb, Feira de Santana - BA, 44052-061",
+            "localizacao": [
+                -12.240613,
+                -38.943099
+            ],
+            "produtos": [
+                {
+                    "id": 33,
+                    "nome": "Pizza Hut Box",
+                    "quantidade": 1, 
+                    "preco_unitario": 30.90, 
+                    "subtotal": 30.90,
+                    "desconto": 0.00, 
+                    "total": 30.90
+                },
+                {
+                    "id": 55,
+                    "nome": "Coca Cola 1L",
+                    "quantidade": 2, 
+                    "preco_unitario": 6.90, 
+                    "subtotal": 13.80,
+                    "desconto": 0.00, 
+                    "total": 13.80
+                }
+            ],
+            "total_entrega": 44.70,
+            "total_desconto": 0.00,
+            "codigo_entrega": 3544,
+            "pago": false, 
+            "tipo_pagamento": [
+                {
+                    "id": 8, 
+                    "nome": "Cartão de Crédito MASTERCARD Á vista",
+                    "bandeira": "MASTERCARD"
+                }
+            ]
+        }, 
+        {
+            "id": 3,
+            "destinatario": "João Pedro",
+            "endereco": "R. Gov. Juraci Magalhães, 870 - Ponto Central, Feira de Santana - BA, 44075-115",
+            "localizacao": [
+                -12.2467237,
+                -38.9514906
+            ],
+            "produtos": [
+                {
+                    "id": 12,
+                    "nome": "Pizza Hut Brotinho",
+                    "quantidade": 1, 
+                    "preco_unitario": 16.90, 
+                    "subtotal": 16.90,
+                    "desconto": 0.00, 
+                    "total": 16.90
+                },
+                {
+                    "id": 55,
+                    "nome": "Coca Cola 1L",
+                    "quantidade": 1, 
+                    "preco_unitario": 6.90, 
+                    "subtotal": 6.90,
+                    "desconto": 0.00, 
+                    "total": 6.90
+                }
+            ],
+            "total_entrega": 23.80,
+            "total_desconto": 0.00,
+            "codigo_entrega": 3545,
+            "pago": false, 
+            "tipo_pagamento": [
+                {
+                    "id": 5, 
+                    "nome": "Cartão de Crédito VISA Á vista",
+                    "bandeira": "VISA"
+                }
+            ]
+        }
+
+    ]
+
+}
