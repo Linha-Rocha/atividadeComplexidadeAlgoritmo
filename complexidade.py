@@ -1,45 +1,48 @@
+import numpy as np
+from python_tsp.exact import solve_tsp_dynamic_programming
 import json
-import math
 
-def load_data(filename='pedidos.json'):
-    """
-    Load delivery data from JSON file.
-    Returns:
-    - starting point (estabelecimento)
-    - list of deliveries with id and localizacao.
-    """
-    with open(filename, 'r') as file:
-        data = json.load(file)
-    return data['estabelecimento'], data['entregas']
+#Fórmula de haversine
+def haversine_distance(coord1, coord2):
+    R = 6371.0  # Raio terrestre em kilometros
+    lat1, lon1 = coord1
+    lat2, lon2 = coord2
+    
+    dlat = np.radians(lat2 - lat1)
+    dlon = np.radians(lon2 - lon1)
+    
+    a = (np.sin(dlat / 2) * np.sin(dlat / 2) +
+         np.cos(np.radians(lat1)) * np.cos(np.radians(lat2)) *
+         np.sin(dlon / 2) * np.sin(dlon / 2))
+    
+    c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+    distance = R * c
+    return distance
 
-def nearest_neighbor_algorithm(start, deliveries):
-    """
-    Solve TSP using the Nearest Neighbor heuristic.
-    Returns:
-    - path (route) as a list of coordinates.
-    """
-    unvisited = deliveries[:]
-    current_location = start
-    path = [start]
+# Lendo o arquivo pedidos.json com a codificação 'utf-8'
+with open("pedidos.json", "r", encoding="utf-8") as file:
+    data = json.load(file)
 
-    while unvisited:
-        nearest = min(unvisited, key=lambda x: math.dist(current_location, x['localizacao']))
-        path.append(nearest['localizacao'])
-        current_location = nearest['localizacao']
-        unvisited.remove(nearest)
+# Criando a matriz de localizações
+locations = [data['localizacao']]
+destinatarios = ["McDonalds"]  # Lista para armazenar os destinatários, começando com o nome do estabelecimento
+for entrega in data['entregas']:
+    locations.append(entrega['localizacao'])
+    destinatarios.append(entrega['destinatario'])
 
-    path.append(start)  # Return to starting point
-    return path
+# Calculando a matriz de distâncias usando Haversine
+num_locations = len(locations)
+distance_matrix = np.zeros((num_locations, num_locations))
+for i in range(num_locations):
+    for j in range(num_locations):
+        distance_matrix[i, j] = haversine_distance(locations[i], locations[j])
 
-#CALCULA A DISTANCIA TOTAL#
-def calculate_total_distance(route): 
-    return sum(math.dist(route[i], route[i+1]) for i in range(len(route)-1))
+permutation, distance = solve_tsp_dynamic_programming(distance_matrix)
 
-def main():
-    start, deliveries = load_data()
-    route = nearest_neighbor_algorithm(start, deliveries)
-    print("Rota:", route)
-    print("Distância total da rota:", calculate_total_distance(route))
+# Exibindo a melhor rota usando o campo "destinatario"
+print("Melhor rota:")
+route = " -> ".join([destinatarios[i] for i in permutation]) + " -> " + destinatarios[0]  # Adicionando o nome do estabelecimento ao final
+print(route)
 
-if __name__ == '__main__':
-    main()
+# Informando a distância total
+print("\nDistância total da rota: {:.2f} km".format(distance))
