@@ -6,6 +6,7 @@
     "entregas": [
         {
             "id": 1,
+            "pedido_id:": 1,
             "destinatario": "Lucas Silva",
             "endereco": "Travessa Serrolândia, 30, Caseb, Feira de Santana - BA, 44052-168",
             "localizacao": [
@@ -37,6 +38,7 @@
         }, 
         {
             "id": 2,
+            "pedido_id:": 2,
             "destinatario": "Marcela Almeida",
             "endereco": "R. Araraquara, 10 - Caseb, Feira de Santana - BA, 44052-061",
             "localizacao": [
