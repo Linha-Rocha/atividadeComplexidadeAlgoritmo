@@ -9,3 +9,7 @@
 ### Atividade 2
 
 > Árvore Binária AVL
+
+### Atividade 3
+
+> Mochila Binária

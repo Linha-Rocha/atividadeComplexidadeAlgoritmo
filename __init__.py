@@ -4,6 +4,7 @@ import numpy as np
 from python_tsp.exact import solve_tsp_dynamic_programming
 
 from avl_tree import AVLTree
+from knapsack import otimizador_mochila, extrair_pedidos_de_arquivo
 from pedido import Pedido
 
 
@@ -42,13 +43,12 @@ for pedido in pedidos:
     chave = (estabelecimento_id, pedido_obj.id)  # Chave é uma tupla (estabelecimento_id, pedido_id)
     avl_tree.insert(chave, pedido_obj)  # Supondo que insert possa aceitar uma chave e um valor
 
-
-
 print("Travessia em ordem da árvore AVL:")
 avl_tree.in_order_traversal()
 
 print("\nBusca por chave:")
-avl_tree.search((1, 2))  # Busca pelo pedido com chave (1, 2) / buscar o pedido com estabelecimento_id = 1 e pedido_id = 2, por exemplo
+avl_tree.search((1,
+                 2))  # Busca pelo pedido com chave (1, 2) / buscar o pedido com estabelecimento_id = 1 e pedido_id = 2, por exemplo
 
 # Criar matriz localização
 locations = [data['localizacao']]
@@ -74,3 +74,16 @@ print(route)
 
 # Informando a distância total
 print("\nDistância total da rota: {:.2f} km".format(distance))
+
+# Exemplo de uso
+arquivo_json = 'knapsack.json'  # Caminho para o arquivo JSON
+carga_total_exemplo = 1000  # Definindo a carga total
+
+pedidos = extrair_pedidos_de_arquivo(arquivo_json)
+pedidos_selecionados = otimizador_mochila(pedidos, carga_total_exemplo)
+
+print("\nPedidos selecionados:")
+for pedido in pedidos_selecionados:
+    print(f"Peso: {pedido[0]}, Valor de entrega: {pedido[1]}")
+print(f"\nPeso total: {sum([p[0] for p in pedidos_selecionados])}")
+print(f"Valor total: {sum([p[1] for p in pedidos_selecionados])}")
